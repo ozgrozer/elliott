@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "main": "electron.js",
   "scripts": {
-    "start-parcel": "parcel ./src/frontend/index.html --out-dir ./public --public-url / --port 1234",
+    "start-parcel": "parcel ./src/frontend/html/index.html --out-dir ./public --public-url / --port 1234",
     "start-electron": "electron .",
     "build": "npm run build-parcel && npm run build-electron",
-    "build-parcel": "parcel build ./src/frontend/index.html --out-dir ./public --public-url ./",
+    "build-parcel": "parcel build ./src/frontend/html/index.html --out-dir ./public --public-url ./",
     "prebuild-parcel": "rm -rf ./public/*",
     "build-electron": "build -mw && npm run release",
     "release": "npm run release:mac && npm run release:windows",
