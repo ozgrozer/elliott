@@ -3,17 +3,11 @@ import ReactDOM from 'react-dom'
 
 import './../css/style.scss'
 
+import Home from './Home'
+
 const App = () => {
   return (
-    <form>
-      <div className='form-group'>
-        <input
-          type='text'
-          placeholder='Partner ID'
-          className='form-control form-control-lg'
-        />
-      </div>
-    </form>
+    <Home />
   )
 }
 
