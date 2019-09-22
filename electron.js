@@ -7,7 +7,7 @@ const createWindow = () => {
     width: 800,
     height: 500,
     show: false,
-    titleBarStyle: 'hiddenInset'
+    titleBarStyle: 'hidden'
   })
   win.loadURL(isDev ? 'http://localhost:1234' : `file://${__dirname}/public/index.html`)
   win.once('ready-to-show', () => {
