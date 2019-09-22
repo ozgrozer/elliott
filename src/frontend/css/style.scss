@@ -8,6 +8,14 @@
 
 @import './home';
 
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: calc(100% - 22px);
+}
+
 #title {
   color: #fff;
   height: 22px;

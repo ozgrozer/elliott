@@ -11,6 +11,12 @@ const Home = () => {
             className='form-control form-control-lg'
           />
         </div>
+
+        <div className='form-group'>
+          <button className='btn btn-primary btn-lg btn-block'>
+            Connect
+          </button>
+        </div>
       </form>
     </div>
   )
