@@ -18,7 +18,7 @@ const ReadyToConnect = () => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Partner ID'
+            placeholder='Partner IP'
             className='form-control form-control-lg'
           />
         </div>

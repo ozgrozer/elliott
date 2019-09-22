@@ -4,7 +4,8 @@ const MainContext = createContext()
 
 const MainProvider = (props) => {
   const [state, setState] = useState({
-    connected: false
+    connected: true,
+    transferStarted: false
   })
 
   const _setState = newState => {

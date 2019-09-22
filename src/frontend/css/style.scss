@@ -6,7 +6,9 @@
 @import './../../../node_modules/bootstrap/scss/forms';
 @import './../../../node_modules/bootstrap/scss/buttons';
 
+@import './variables';
 @import './readyToConnect';
+@import './connected';
 
 html, body {
   height: 100%;
@@ -25,4 +27,14 @@ html, body {
   -webkit-app-region: drag;
   -webkit-user-select: none;
   background-color: #272c35;
+}
+
+.greenCircle {
+  content: '';
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: $green;
 }
