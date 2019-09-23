@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Form, Input } from 'rfv'
 import axios from 'axios'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import { MainContext } from './MainContext'
 
@@ -38,6 +39,9 @@ const ReadyToConnect = () => {
     }
   }
 
+  const localIpAndPort = `${state.localIp}:${state.port}`
+  const publicIpAndPort = `${state.publicIp}:${state.port}`
+
   return (
     <div id='readyToConnect'>
       <div id='formWrapper'>
@@ -67,9 +71,11 @@ const ReadyToConnect = () => {
           {
             state.publicIp
               ? (
-                <button className='btn btn-dark btn-sm'>
-                  {`${state.publicIp}:${state.port}`}
-                </button>
+                <CopyToClipboard text={publicIpAndPort}>
+                  <button className='btn btn-dark btn-sm'>
+                    {publicIpAndPort}
+                  </button>
+                </CopyToClipboard>
               )
               : (
                 <span>...</span>
@@ -79,9 +85,11 @@ const ReadyToConnect = () => {
 
         <div className='float-right'>
           Local IP:
-          <button className='btn btn-dark btn-sm'>
-            {state.localIp}:{state.port}
-          </button>
+          <CopyToClipboard text={localIpAndPort}>
+            <button className='btn btn-dark btn-sm'>
+              {localIpAndPort}
+            </button>
+          </CopyToClipboard>
         </div>
       </footer>
     </div>

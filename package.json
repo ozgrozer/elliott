@@ -43,6 +43,7 @@
     "public-ip": "^3.2.0",
     "pug": "^2.0.4",
     "react": "^16.9.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.9.0",
     "rfv": "^0.0.28",
     "standard": "^14.3.1"
