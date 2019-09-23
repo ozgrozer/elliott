@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Form, Input } from 'rfv'
+import axios from 'axios'
 
 import { MainContext } from './MainContext'
 
@@ -15,6 +16,16 @@ const validations = {
 
 const ReadyToConnect = () => {
   const { state, setState } = useContext(MainContext)
+
+  useEffect(() => {
+    axios
+      .post('/get-public-ip')
+      .then(res => {
+        setState({
+          publicIp: res.data.publicIp
+        })
+      })
+  }, [])
 
   const postSubmit = (res) => {
     console.log(res.data)
