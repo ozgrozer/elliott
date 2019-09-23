@@ -4,8 +4,11 @@ const MainContext = createContext()
 
 const MainProvider = (props) => {
   const [state, setState] = useState({
-    connected: true,
-    transferStarted: false
+    connected: false,
+    transferStarted: false,
+    localIp: window.defaults.localIp,
+    port: window.defaults.port,
+    publicIp: ''
   })
 
   const _setState = newState => {

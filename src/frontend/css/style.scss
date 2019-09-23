@@ -5,6 +5,7 @@
 @import './../../../node_modules/bootstrap/scss/type';
 @import './../../../node_modules/bootstrap/scss/forms';
 @import './../../../node_modules/bootstrap/scss/buttons';
+@import './../../../node_modules/bootstrap/scss/utilities';
 
 @import './variables';
 @import './readyToConnect';
@@ -37,4 +38,26 @@ html, body {
   border-radius: 50%;
   display: inline-block;
   background-color: $green;
+}
+
+header, footer {
+  height: 50px;
+  padding: 0 $gap;
+  line-height: 49px;
+  background-color: $gray-100;
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+header {
+  border-bottom: 1px solid $gray-200;
+}
+footer {
+  border-top: 1px solid $gray-200;
+}
+
+.btn {
+  vertical-align: baseline;
 }

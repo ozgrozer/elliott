@@ -22,13 +22,13 @@ const Connected = () => {
 
   return (
     <div id='connected'>
-      <div id='partner'>
-        <div id='partnerId'>
+      <header>
+        <div className='float-left'>
           <span className='greenCircle' />
           <span>104.131.70.30:2436</span>
         </div>
 
-        <div id='disconnectButton'>
+        <div className='float-right'>
           <button
             onClick={disconnect}
             className='btn btn-danger btn-sm'
@@ -36,7 +36,7 @@ const Connected = () => {
             Disconnect
           </button>
         </div>
-      </div>
+      </header>
 
       <div
         id='container'

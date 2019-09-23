@@ -1,31 +1,6 @@
 #connected {
   height: 100%;
 
-  #partner {
-    height: 50px;
-    padding: 0 $gap;
-    line-height: 49px;
-    background-color: $gray-100;
-    border-bottom: 1px solid $gray-200;
-    &:after {
-      content: '';
-      clear: both;
-      display: table;
-    }
-
-    #partnerId {
-      float: left;
-    }
-
-    #disconnectButton {
-      float: right;
-
-      .btn {
-        vertical-align: baseline;
-      }
-    }
-  }
-
   #container {
     padding: $gap;
     height: calc(100% - 50px);
