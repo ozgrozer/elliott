@@ -9,7 +9,7 @@ const createWindow = () => {
     show: false,
     titleBarStyle: 'hidden'
   })
-  win.loadURL(isDev ? 'http://localhost:1234' : `file://${__dirname}/public/index.html`)
+  win.loadURL(isDev ? 'http://localhost:9000' : `file://${__dirname}/dist/index.html`)
   win.once('ready-to-show', () => {
     win.show()
   })
