@@ -1,36 +1,53 @@
 import React, { useContext } from 'react'
+import { Form, Input } from 'rfv'
 
 import { MainContext } from './MainContext'
+
+const validations = {
+  partnerIp: [
+    {
+      rule: 'isLength',
+      args: { min: 1 },
+      invalidFeedback: 'Please provide an IP address'
+    }
+  ]
+}
 
 const ReadyToConnect = () => {
   const { state, setState } = useContext(MainContext)
 
-  const next = e => {
-    e.preventDefault()
-    setState({
-      connected: true
-    })
+  const postSubmit = (res) => {
+    console.log(res.data)
+    if (res.data.success) {
+      setState({
+        connected: true
+      })
+    } else {
+      console.log('error')
+    }
   }
 
   return (
     <div id='readyToConnect'>
       <div id='formWrapper'>
-        <form>
+        <Form
+          postSubmit={postSubmit}
+          postOptions={{ method: 'post', url: '/connect-to-ip' }}
+        >
           <div className='form-group'>
-            <input
+            <Input
               type='text'
+              name='partnerIp'
               placeholder='Partner IP'
+              validations={validations.partnerIp}
               className='form-control form-control-lg'
             />
           </div>
 
-          <button
-            onClick={next}
-            className='btn btn-primary btn-lg btn-block'
-          >
+          <button className='btn btn-primary btn-lg btn-block'>
             Connect
           </button>
-        </form>
+        </Form>
       </div>
 
       <footer>
