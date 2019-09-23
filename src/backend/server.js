@@ -1,4 +1,5 @@
 const path = require('path')
+const axios = require('axios')
 const express = require('express')
 const _localIp = require('ip')
 const _publicIp = require('public-ip')
@@ -19,12 +20,30 @@ app.post('/get-public-ip', async (req, res) => {
   res.json(result)
 })
 
+app.post('/coming-request', (req, res) => {
+  res.json({ pong: true })
+})
+
 app.post('/connect-to-ip', async (req, res) => {
   const result = {
     success: false,
     validations: {}
   }
-  result.validations.partnerIp = 'Cannot connect'
+
+  try {
+    const urlToConnect = `http://${req.body.partnerIp}/coming-request`
+    const _ping = await axios.post(urlToConnect, { ping: true })
+    const ping = _ping.data
+
+    if (ping.pong) {
+      result.success = true
+    } else {
+      result.validations.partnerIp = 'Cannot connect'
+    }
+  } catch (e) {
+    result.validations.partnerIp = e.message
+  }
+
   res.json(result)
 })
 
