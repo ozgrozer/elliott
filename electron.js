@@ -1,5 +1,19 @@
 const { app, BrowserWindow } = require('electron')
-const isDev = require('electron-is-dev')
+const path = require('path')
+const express = require('express')
+
+const serverRoutes = require('./src/backend/server')
+const expressApp = express()
+expressApp.use('/', serverRoutes)
+expressApp.set('view engine', 'pug')
+expressApp.set('views', path.join(__dirname, 'src', 'frontend', 'html'))
+
+let port = ''
+const server = expressApp.listen(process.env.PORT || 0, () => {
+  port = server.address().port
+  console.log('Example app listening on port http://localhost:' + port)
+})
+
 let win
 
 const createWindow = () => {
@@ -9,7 +23,7 @@ const createWindow = () => {
     show: false,
     titleBarStyle: 'hidden'
   })
-  win.loadURL(isDev ? 'http://localhost:9000' : `file://${__dirname}/dist/index.html`)
+  win.loadURL('http://localhost:' + port)
   win.once('ready-to-show', () => {
     win.show()
   })

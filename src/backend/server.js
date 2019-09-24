@@ -1,30 +1,25 @@
 const path = require('path')
-const axios = require('axios')
 const express = require('express')
+const axios = require('axios')
 const _localIp = require('ip')
 const _publicIp = require('public-ip')
 
-const app = express()
-app.use(express.json())
-app.set('view engine', 'pug')
-app.set('views', path.join(__dirname, '..', 'frontend', 'html'))
-app.use(express.static(path.join(__dirname, '..', '..', 'dist')))
+const router = express.Router()
 
-const server = app.listen(process.env.PORT || 0, () => {
-  console.log('Example app listening on port http://localhost:' + server.address().port)
-})
+router.use(express.json())
+router.use(express.static(path.join(__dirname, '..', '..', 'dist')))
 
-app.post('/get-public-ip', async (req, res) => {
+router.post('/get-public-ip', async (req, res) => {
   const publicIp = await _publicIp.v4()
   const result = { publicIp }
   res.json(result)
 })
 
-app.post('/coming-request', (req, res) => {
+router.post('/coming-request', (req, res) => {
   res.json({ pong: true })
 })
 
-app.post('/connect-to-ip', async (req, res) => {
+router.post('/connect-to-ip', async (req, res) => {
   const result = {
     success: false,
     validations: {}
@@ -47,9 +42,11 @@ app.post('/connect-to-ip', async (req, res) => {
   res.json(result)
 })
 
-app.get('*', (req, res) => {
+router.get('*', (req, res) => {
   const localIp = _localIp.address()
-  const port = server.address().port
+  /* const port = server.address().port */
+  /* pass this value with a middleware */
+  const port = req.headers.host.split(':')[1]
 
   res.render('index', {
     defaults: {
@@ -58,3 +55,5 @@ app.get('*', (req, res) => {
     }
   })
 })
+
+module.exports = router
