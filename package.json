@@ -4,7 +4,8 @@
   "main": "electron.js",
   "scripts": {
     "start-parcel": "parcel ./src/frontend/js/index.jsx --out-dir ./dist --public-url / --port 1234",
-    "start-electron": "electron .",
+    "start-electron1": "PORT=9001 electron .",
+    "start-electron2": "PORT=9002 electron .",
     "build": "npm run build-parcel && npm run build-electron",
     "build-parcel": "parcel build ./src/frontend/js/index.jsx --out-dir ./dist --public-url ./",
     "prebuild-parcel": "rm -rf ./dist/*",
@@ -34,11 +35,9 @@
     "bootstrap": "^4.3.1",
     "electron": "^6.0.10",
     "electron-builder": "^21.2.0",
-    "electron-is-dev": "^1.1.0",
     "express": "^4.17.1",
     "ip": "^1.1.5",
     "mkdirp": "^0.5.1",
-    "node-sass": "^4.12.0",
     "parcel-bundler": "1.11.0",
     "public-ip": "^3.2.0",
     "pug": "^2.0.4",
@@ -46,6 +45,7 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.9.0",
     "rfv": "^0.0.28",
+    "sass": "^1.22.12",
     "standard": "^14.3.1"
   }
 }
