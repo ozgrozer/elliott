@@ -44,7 +44,7 @@
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.9.0",
-    "rfv": "^0.0.28",
+    "rfv": "^0.0.29",
     "sass": "^1.22.12",
     "standard": "^14.3.1"
   }
