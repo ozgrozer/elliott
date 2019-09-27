@@ -4,6 +4,7 @@ const express = require('express')
 const expressApp = express()
 const server = require('http').createServer(expressApp)
 const io = require('socket.io')(server)
+require('./src/backend/socket')(io)
 
 const serverRoutes = require('./src/backend/server')
 expressApp.use('/', serverRoutes)
@@ -14,13 +15,6 @@ let port = ''
 const _server = server.listen(process.env.PORT || 0, () => {
   port = _server.address().port
   console.log('Example app listening on port http://localhost:' + port)
-})
-
-io.on('connection', (client) => {
-  client.on('event1', (comingData) => {
-    console.log('coming data from client to server:', comingData)
-    client.emit('event2', 'sending data from server to client')
-  })
 })
 
 let win
