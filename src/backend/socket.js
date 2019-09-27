@@ -4,15 +4,15 @@ const _publicIp = require('public-ip')
 const socket = io => {
   io.on('connection', client => {
     client.on('get-public-ip', async data => {
+      const result = { success: false }
       const publicIp = await _publicIp.v4()
-      const result = { publicIp }
+      result.success = true
+      result.publicIp = publicIp
       client.emit('get-public-ip', result)
     })
 
     client.on('connect-to-partner', async data => {
-      const result = {
-        success: false
-      }
+      const result = { success: false }
 
       try {
         const urlToConnect = `http://${data.partnerIp}/coming-request`

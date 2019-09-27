@@ -23,16 +23,16 @@ const ReadyToConnect = () => {
   useEffect(() => {
     socket.emit('get-public-ip')
     socket.on('get-public-ip', data => {
-      setState({
-        publicIp: data.publicIp
-      })
+      if (data.success) {
+        setState({ publicIp: data.publicIp })
+      } else {
+        console.log('ip couldn\'t get')
+      }
     })
 
     socket.on('connect-to-partner', data => {
       if (data.success) {
-        setState({
-          connected: true
-        })
+        setState({ connected: true })
       } else {
         console.log('not success')
       }
