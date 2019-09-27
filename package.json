@@ -46,6 +46,8 @@
     "react-dom": "^16.9.0",
     "rfv": "^0.0.29",
     "sass": "^1.22.12",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
     "standard": "^14.3.1"
   }
 }
