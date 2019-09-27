@@ -47,7 +47,7 @@ const ReadyToConnect = () => {
       <div id='formWrapper'>
         <Form
           postSubmit={postSubmit}
-          postOptions={{ method: 'post', url: '/connect-to-ip' }}
+          postOptions={{ method: 'post', url: '/connect-to-partner' }}
         >
           <div className='form-group'>
             <Input

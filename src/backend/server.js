@@ -19,7 +19,7 @@ router.post('/coming-request', (req, res) => {
   res.json({ pong: true })
 })
 
-router.post('/connect-to-ip', async (req, res) => {
+router.post('/connect-to-partner', async (req, res) => {
   const result = {
     success: false,
     validations: {}
@@ -44,8 +44,6 @@ router.post('/connect-to-ip', async (req, res) => {
 
 router.get('*', (req, res) => {
   const localIp = _localIp.address()
-  /* const port = server.address().port */
-  /* pass this value with a middleware */
   const port = req.headers.host.split(':')[1]
 
   res.render('index', {
