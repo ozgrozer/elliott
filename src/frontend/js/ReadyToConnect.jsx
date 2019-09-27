@@ -2,8 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import { Form, Input } from 'rfv'
 import axios from 'axios'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import io from 'socket.io-client'
 
 import { MainContext } from './MainContext'
+
+const socket = io('http://localhost:' + window.defaults.port)
 
 const validations = {
   partnerIp: [
@@ -17,6 +20,13 @@ const validations = {
 
 const ReadyToConnect = () => {
   const { state, setState } = useContext(MainContext)
+
+  useEffect(() => {
+    socket.on('event2', (comingData) => {
+      console.log('coming data from server to client:', comingData)
+    })
+    socket.emit('event1', 'sending data from client to server')
+  }, [])
 
   useEffect(() => {
     axios

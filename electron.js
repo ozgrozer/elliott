@@ -1,17 +1,26 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const express = require('express')
+const expressApp = express()
+const server = require('http').createServer(expressApp)
+const io = require('socket.io')(server)
 
 const serverRoutes = require('./src/backend/server')
-const expressApp = express()
 expressApp.use('/', serverRoutes)
 expressApp.set('view engine', 'pug')
 expressApp.set('views', path.join(__dirname, 'src', 'frontend', 'html'))
 
 let port = ''
-const server = expressApp.listen(process.env.PORT || 0, () => {
-  port = server.address().port
+const _server = server.listen(process.env.PORT || 0, () => {
+  port = _server.address().port
   console.log('Example app listening on port http://localhost:' + port)
+})
+
+io.on('connection', (client) => {
+  client.on('event1', (comingData) => {
+    console.log('coming data from client to server:', comingData)
+    client.emit('event2', 'sending data from server to client')
+  })
 })
 
 let win
