@@ -22,10 +22,15 @@ const ReadyToConnect = () => {
   const { state, setState } = useContext(MainContext)
 
   useEffect(() => {
-    socket.on('event2', (comingData) => {
-      console.log('coming data from server to client:', comingData)
+    socket.on('connect-to-partner', data => {
+      if (data.success) {
+        setState({
+          connected: true
+        })
+      } else {
+        console.log('not success')
+      }
     })
-    socket.emit('event1', 'sending data from client to server')
   }, [])
 
   useEffect(() => {
@@ -38,14 +43,9 @@ const ReadyToConnect = () => {
       })
   }, [])
 
-  const postSubmit = (res) => {
-    console.log(res.data)
-    if (res.data.success) {
-      setState({
-        connected: true
-      })
-    } else {
-      console.log('error')
+  const connectToPartner = res => {
+    if (res.isFormValid) {
+      socket.emit('connect-to-partner', res.items)
     }
   }
 
@@ -55,10 +55,7 @@ const ReadyToConnect = () => {
   return (
     <div id='readyToConnect'>
       <div id='formWrapper'>
-        <Form
-          postSubmit={postSubmit}
-          postOptions={{ method: 'post', url: '/connect-to-partner' }}
-        >
+        <Form onSubmit={connectToPartner}>
           <div className='form-group'>
             <Input
               type='text'
