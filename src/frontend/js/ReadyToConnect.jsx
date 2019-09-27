@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import { Form, Input } from 'rfv'
-import axios from 'axios'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import io from 'socket.io-client'
 
@@ -22,6 +21,13 @@ const ReadyToConnect = () => {
   const { state, setState } = useContext(MainContext)
 
   useEffect(() => {
+    socket.emit('get-public-ip')
+    socket.on('get-public-ip', data => {
+      setState({
+        publicIp: data.publicIp
+      })
+    })
+
     socket.on('connect-to-partner', data => {
       if (data.success) {
         setState({
@@ -31,16 +37,6 @@ const ReadyToConnect = () => {
         console.log('not success')
       }
     })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .post('/get-public-ip')
-      .then(res => {
-        setState({
-          publicIp: res.data.publicIp
-        })
-      })
   }, [])
 
   const connectToPartner = res => {

@@ -1,8 +1,12 @@
 const axios = require('axios')
+const _publicIp = require('public-ip')
 
 const socket = io => {
   io.on('connection', client => {
-    client.on('coming-request', async data => {
+    client.on('get-public-ip', async data => {
+      const publicIp = await _publicIp.v4()
+      const result = { publicIp }
+      client.emit('get-public-ip', result)
     })
 
     client.on('connect-to-partner', async data => {
