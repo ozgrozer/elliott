@@ -25,7 +25,7 @@ const Connected = () => {
       <header>
         <div className='float-left'>
           <span className='greenCircle' />
-          <span>104.131.70.30:2436</span>
+          <span>186.46.1.110:9001</span>
         </div>
 
         <div className='float-right'>
